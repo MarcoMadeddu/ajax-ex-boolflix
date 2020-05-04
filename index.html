@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boolfix</title>
+    <!-- ** M A I N  C S S ** -->
+    <link rel="stylesheet" href="assets/main.css">
+    <!-- ** F O N T A W E S O M E ** -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+<body>
+
+    <input id="input" type="text">
+    <button id="search">search</button>
+
+    <ul class="film-list">
+
+    </ul>
+    
+
+
+
+
+
+
+
+    <script id="film-template" type="text/x-handlebars-template">
+        <li class="film">
+            <span>{{title}}</span>
+            <span>{{original-title}}</span>
+            <span>{{original-language}}</span>
+            <span>{{title}}</span>
+        </li>
+      </script>
+
+
+
+     <!-- ** S C R I P T ** -->
+
+    <!-- ** J  Q U E R Y **-->
+    <script src="assets/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <!-- ** H A N D L E B A R S ** -->
+    <script src="assets/handlebars-v4.7.6.js" charset="utf-8"></script>
+    <!-- ** M A I N  J S  **-->
+    <script src="assets/main.js" charset="utf-8"></script>
+</body>
+</html>
