@@ -48,39 +48,35 @@ function searchFilm(template, from , list){
             query: filmToSearch,
             language: "it-IT"
         },
-        
         success: function (data) {
             var films = data.results;
             if(films.length>0){
-                for(var i = 0; i < films.length; i++){
-                    var currentFilm = films[i];
-                    var value = {
-                        title: currentFilm.title,
-                        originalTitle: currentFilm.original_title,
-                        originaLanguage: getLanguage(currentFilm.original_language),
-                        averege: getvote(currentFilm.vote_average),
-                        type: "Film"
-                    };
-    
-                    
-                    var set = template(value);
-                    list.append(set);
-                    from.val("");
-                }
+               getFilm(template, list , films);
+            
             }else{
                 alert("NESSUN FILM");
                 input.select();
             }
-            
-            
-
         },
-
         error: function() {
             console.log("Errore chiamata API film");
-            
         }
     });   
+}
+// G E T F I L M //
+function getFilm(template, list , films){
+    for(var i = 0; i < films.length; i++){
+        var currentFilm = films[i];
+        var value = {
+            title: currentFilm.title,
+            originalTitle: currentFilm.original_title,
+            originaLanguage: getLanguage(currentFilm.original_language),
+            averege: getvote(currentFilm.vote_average),
+            type: "Film"
+        };
+        var set = template(value);
+        list.append(set);
+    }
 }
 
 // S E A R C H  S E R I E //
