@@ -12,19 +12,27 @@ $(document).ready(function () {
 
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){
+        if(input.val() !== ""){
         resetList(list);  
         searchFilm(template, input ,list);
         searchTvSerie(template, input ,list);
         resetInput(input);
+        }else{
+            alert("riempi il campo");
+        }
     });
 
      // S E A R C H  B Y  E N T E R  //
     input.keyup(function(e){
         if(e.which==13){
-        resetList(list);
-        searchFilm(template, input ,list);
-        searchTvSerie(template, input ,list);
-        resetInput(input);
+            if(input.val() !== ""){
+                resetList(list);  
+                searchFilm(template, input ,list);
+                searchTvSerie(template, input ,list);
+                resetInput(input);
+                }else{
+                    alert("riempi il campo");
+                }
         }
     });
 // E N D  D O C U M E N T  R E A D Y //
@@ -35,14 +43,14 @@ $(document).ready(function () {
 // **F U N C T I O N S** //
 
 // R E S E T  L I S T//
-function resetList(list ,input){
+function resetList(list){
     list.children().remove();
-}
+};
 
 // R E S E T  I N P U T //
 function resetInput(input){
     input.val("");
-}
+};
 
 // S E A R C H F I L M //
 function searchFilm(template, from , list){
@@ -69,7 +77,7 @@ function searchFilm(template, from , list){
             console.log("Errore chiamata API film");
         }
     });   
-}
+};
 // G E T F I L M //
 function getFilm(template, list , films){
     for(var i = 0; i < films.length; i++){
@@ -81,10 +89,9 @@ function getFilm(template, list , films){
             averege: getvote(currentFilm.vote_average),
             type: "Film"
         };
-        var set = template(value);
-        list.append(set);
+        append(template,value,list);
     }
-}
+};
 
 // S E A R C H  S E R I E //
 function searchTvSerie(template, from , list){
@@ -100,29 +107,35 @@ function searchTvSerie(template, from , list){
         
         success: function (data) {
             var series = data.results;
-            
-            for(var i = 0; i < series.length; i++){
-                var currentSerie = series[i];
-                var value = {
-                    title: currentSerie.name,
-                    originalTitle: currentSerie.original_name,
-                    originaLanguage: getLanguage(currentSerie.original_language),
-                    averege: getvote(currentSerie.vote_average),
-                    type: "Serie Tv"
-                };
-                var set = template(value);
-                list.append(set);
-                
+            if(series.length>0){
+                getSerie(template, list , series);
+            }else{
+                console.log("non ci sono serie");
+                from.select();
             }
-
         },
 
         error: function() {
             console.log("Errore chiamata API serie tv");
             
         }
-    });   
+    });
+}   
+// G E T  S E R I E //  
+function getSerie(template, list , series){
+    for(var i = 0; i < series.length; i++){
+        var currentSerie = series[i];
+        var value = {
+            title: currentSerie.name,
+            originalTitle: currentSerie.original_name,
+            originaLanguage: getLanguage(currentSerie.original_language),
+            averege: getvote(currentSerie.vote_average),
+            type: "Serie Tv"
+        };
+        append(template,value,list);    
+    }
 }
+
 // G E T  V O T E //
 function getvote(number){
     
@@ -153,5 +166,11 @@ function getLanguage(type) {
           return type;
       }
     
-}
+};
+
+// A P P E N D //
+function append(template,value,list){
+    var set = template(value);
+        list.append(set);
+};
 
