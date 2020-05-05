@@ -12,17 +12,19 @@ $(document).ready(function () {
 
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){
-        reset(list);  
+        resetList(list);  
         searchFilm(template, input ,list);
         searchTvSerie(template, input ,list);
+        resetInput(input);
     });
 
      // S E A R C H  B Y  E N T E R  //
     input.keyup(function(e){
         if(e.which==13){
-        reset(list);
+        resetList(list);
         searchFilm(template, input ,list);
         searchTvSerie(template, input ,list);
+        resetInput(input);
         }
     });
 // E N D  D O C U M E N T  R E A D Y //
@@ -32,9 +34,14 @@ $(document).ready(function () {
 
 // **F U N C T I O N S** //
 
-// R E S E T //
-function reset(list){
+// R E S E T  L I S T//
+function resetList(list ,input){
     list.children().remove();
+}
+
+// R E S E T  I N P U T //
+function resetInput(input){
+    input.val("");
 }
 
 // S E A R C H F I L M //
@@ -55,7 +62,7 @@ function searchFilm(template, from , list){
             
             }else{
                 alert("NESSUN FILM");
-                input.select();
+                from.select();
             }
         },
         error: function() {
@@ -103,11 +110,9 @@ function searchTvSerie(template, from , list){
                     averege: getvote(currentSerie.vote_average),
                     type: "Serie Tv"
                 };
-
-                
                 var set = template(value);
                 list.append(set);
-                from.val("");
+                
             }
 
         },
