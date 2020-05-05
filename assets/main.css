@@ -12,3 +12,7 @@ body{
     margin-bottom: 10px;
     border: 1px solid black;
 }
+
+.flag{
+    max-width: 20px;
+}
