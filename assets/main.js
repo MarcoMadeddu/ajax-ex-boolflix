@@ -8,6 +8,8 @@ $(document).ready(function () {
     var source = $("#film-template").html();
     var template = Handlebars.compile(source);
 
+    input.focus(); //.select()
+
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){
         searchFilm(template, input ,list);
@@ -48,12 +50,12 @@ function searchFilm(template, from , list){
                     title: currentFilm.title,
                     originalTitle: currentFilm.original_title,
                     originaLanguage: currentFilm.original_language,
-                    averege: currentFilm.vote_average
+                    averege: getvote(currentFilm.vote_average)
                 };
 
+                
                 var set = template(value);
                 list.append(set);
-                console.log(value);
                 from.val("");
             }
 
@@ -66,3 +68,19 @@ function searchFilm(template, from , list){
     });
     
 }
+
+function getvote(number){
+    
+    if(number > 5){
+        number = 5;
+    }else{
+        number.toFixed(0);
+    }
+    var stars = "";
+    var star = '<i class="fas fa-star"></i>'
+    for(var i = 0; i< number; i++){
+        stars+=star;
+    }
+    return stars;
+}
+

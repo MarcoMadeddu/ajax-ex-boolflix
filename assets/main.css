@@ -8,9 +8,7 @@ body{
     font-family: sans-serif;
 }
 
-.film{
-    display: flex;
-    flex-direction: column;
+.movie{
     margin-bottom: 10px;
     border: 1px solid black;
 }

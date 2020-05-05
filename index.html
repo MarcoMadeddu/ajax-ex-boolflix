@@ -14,9 +14,9 @@
     <input id="input" type="text">
     <button id="search">search</button>
 
-    <ul class="film-list">
+    <div class="film-list">
 
-    </ul>
+    </div>
     
 
 
@@ -26,12 +26,31 @@
 
 
     <script id="film-template" type="text/x-handlebars-template">
-        <li class="film">
-            <span>Titolo: {{title}}</span>
-            <span>Titolo originale: {{originalTitle}}</span>
-            <span>Lingua originale: {{originaLanguage}}</span>
-            <span>Voto:{{averege}}</span>
-        </li>
+        <div class="movie">
+            <ul>
+                <li>
+                    <span>Titolo:</span>
+                    <span>{{title}}</span>
+                </li>
+
+                
+                <li>
+                    <span>Titolo originale:</span>
+                    <span>{{originalTitle}}</span>
+                </li>
+            
+
+                <li>
+                    <span>Lingua:</span>
+                    <span>{{originaLanguage}}</span>
+                </li>
+
+                <li>
+                    <span>Voti:</span>
+                    <span>{{{averege}}}</span>
+                </li>
+            </ul>
+        </div>
       </script>
 
 
