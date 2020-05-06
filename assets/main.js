@@ -79,23 +79,24 @@ function searchFilm(template, from , list, type){
     });   
 };
 // G E T  R E S U L T S //
-function getResults(template, list , films, type){
-    for(var i = 0; i < films.length; i++){
-        var currentFilm = films[i];
+function getResults(template, list , data, type){
+    for(var i = 0; i < data.length; i++){
+        var currentData = data[i];
         var title , originalTitle;
         if (type=="Film"){
-            title= currentFilm.title;
-            originalTitle= currentFilm.original_title;
+            title= currentData.title;
+            originalTitle= currentData.original_title;
         }else if(type=="Serie"){
-            title= currentFilm.name;
-            originalTitle= currentFilm.original_name;
+            title= currentData.name;
+            originalTitle= currentData.original_name;
         }
 
         var value = {
             title: title,
             originalTitle: originalTitle,
-            originaLanguage: getLanguage(currentFilm.original_language),
-            averege: getvote(currentFilm.vote_average),
+            originaLanguage: getLanguage(currentData.original_language),
+            averege: getvote(currentData.vote_average),
+            overview: getOw(currentData.overview),
             type: type
         };
         append(template,value,list);
@@ -148,9 +149,8 @@ function getvote(number){
 }
 
 // G E T  L A N G U A G E //
-function getLanguage(type) {
-    var it = "./assets/img2/'it.svg'";
-    switch(type) {
+function getLanguage(lang) {
+    switch(lang) {
         case "it":
           return '<img class="flag" src="img/it.svg" alt="it">';
           break;
@@ -158,10 +158,21 @@ function getLanguage(type) {
           return '<img class="flag" src="img/en.svg" alt="eng">';
           break;
         default:
-          return type;
+          return lang;
       }
     
 };
+
+// G E T  O V E R V I E W //
+function getOw(trama){
+    var res= "";
+    if(trama.length > 300){
+        res = trama.substr(0, 300);
+    }else{
+        res = trama;
+    }
+return res;
+}
 
 // A P P E N D //
 function append(template,value,list){
