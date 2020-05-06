@@ -1,38 +1,24 @@
 $(document).ready(function () {
-    // V A R I A B I L I // 
 
+    // V A R I A B I L I // 
     var input = $("#input");
     var btnSearch =$ ("#search");
-    var list = $(".film-list");
-    
+    var list = $(".film-list"); 
     var source = $("#film-template").html();
     var template = Handlebars.compile(source);
-
     input.focus();
 
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){
-        if(input.val() !== ""){
-        resetList(list);  
-        searchData(template, input ,list, "Film");
-        searchData(template, input ,list, "Serie");
-        resetInput(input);
-        }else{
-            alert("riempi il campo");
-        }
+        var param = {list,template,input};
+        run(param);
     });
 
      // S E A R C H  B Y  E N T E R  //
     input.keyup(function(e){
         if(e.which==13){
-            if(input.val() !== ""){
-                resetList(list);  
-                searchData(template, input ,list , "Film");
-                searchData(template, input ,list, "Serie");
-                resetInput(input);
-                }else{
-                    alert("riempi il campo");
-                }
+            var param = {list,template,input};
+            run(param);
         }
     });
 // E N D  D O C U M E N T  R E A D Y //
@@ -41,6 +27,18 @@ $(document).ready(function () {
 
 
 // **F U N C T I O N S** //
+
+// R U N //
+function run(param){
+    if(param.input.val() !== ""){
+        resetList(param.list);  
+        searchData(param.template, param.input , param.list, "Film");
+        searchData(param.template, param.input , param.list, "Serie");
+        resetInput(param.input);
+    }else{
+        alert("riempi il campo");
+    }
+}
 
 // R E S E T  L I S T//
 function resetList(list){
