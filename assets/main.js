@@ -15,7 +15,7 @@ $(document).ready(function () {
         if(input.val() !== ""){
         resetList(list);  
         searchFilm(template, input ,list, "Film");
-        searchTvSerie(template, input ,list, "Serie");
+        searchFilm(template, input ,list, "Serie");
         resetInput(input);
         }else{
             alert("riempi il campo");
@@ -28,7 +28,7 @@ $(document).ready(function () {
             if(input.val() !== ""){
                 resetList(list);  
                 searchFilm(template, input ,list , "Film");
-                searchTvSerie(template, input ,list, "Serie");
+                searchFilm(template, input ,list, "Serie");
                 resetInput(input);
                 }else{
                     alert("riempi il campo");
@@ -54,9 +54,18 @@ function resetInput(input){
 
 // S E A R C H  F I L M //
 function searchFilm(template, from , list, type){
+
     var filmToSearch = from.val().trim();
+    var url;
+
+    if(type == "Film"){
+        url = "https://api.themoviedb.org/3/search/movie";
+    }else if( type == "Serie"){
+        url = "https://api.themoviedb.org/3/search/tv";
+    }
+
     $.ajax({
-        url: "https://api.themoviedb.org/3/search/movie",
+        url: url,
         method: "GET",
         data: {
             api_key: "d095562fc608329d4fa8c044d034e379",
@@ -69,12 +78,12 @@ function searchFilm(template, from , list, type){
                getResults(template, list , films, type);
             
             }else{
-                alert("NESSUN FILM");
+                alert("NESSUN RISULTATO PER " + type );
                 from.select();
             }
         },
         error: function() {
-            console.log("Errore chiamata API film");
+            console.log("Errore chiamata API");
         }
     });   
 };
@@ -102,36 +111,7 @@ function getResults(template, list , data, type){
         append(template,value,list);
     }
 };
-
-// S E A R C H  S E R I E //
-function searchTvSerie(template, from , list , type){
-    var serieToSearch = from.val().trim();
-    $.ajax({
-        url: "https://api.themoviedb.org/3/search/tv",
-        method: "GET",
-        data: {
-            api_key: "d095562fc608329d4fa8c044d034e379",
-            query: serieToSearch,
-            language: "it-IT"
-        },
-        
-        success: function (data) {
-            var series = data.results;
-            if(series.length>0){
-                getResults(template, list , series , type);
-            }else{
-                console.log("non ci sono serie");
-                from.select();
-            }
-        },
-
-        error: function() {
-            console.log("Errore chiamata API serie tv");
-            
-        }
-    });
-}   
-
+ 
 // G E T  V O T E //
 function getvote(number){
     
