@@ -14,8 +14,8 @@ $(document).ready(function () {
     btnSearch.click(function(){
         if(input.val() !== ""){
         resetList(list);  
-        searchFilm(template, input ,list, "Film");
-        searchFilm(template, input ,list, "Serie");
+        searchData(template, input ,list, "Film");
+        searchData(template, input ,list, "Serie");
         resetInput(input);
         }else{
             alert("riempi il campo");
@@ -27,8 +27,8 @@ $(document).ready(function () {
         if(e.which==13){
             if(input.val() !== ""){
                 resetList(list);  
-                searchFilm(template, input ,list , "Film");
-                searchFilm(template, input ,list, "Serie");
+                searchData(template, input ,list , "Film");
+                searchData(template, input ,list, "Serie");
                 resetInput(input);
                 }else{
                     alert("riempi il campo");
@@ -52,8 +52,8 @@ function resetInput(input){
     input.val("");
 };
 
-// S E A R C H  F I L M //
-function searchFilm(template, from , list, type){
+// S E A R C H  D A T A //
+function searchData(template, from , list, type){
 
     var filmToSearch = from.val().trim();
     var url;
@@ -92,6 +92,7 @@ function getResults(template, list , data, type){
     for(var i = 0; i < data.length; i++){
         var currentData = data[i];
         var title , originalTitle;
+
         if (type=="Film"){
             title= currentData.title;
             originalTitle= currentData.original_title;
@@ -101,6 +102,7 @@ function getResults(template, list , data, type){
         }
 
         var value = {
+            poster: getImg(currentData.poster_path),
             title: title,
             originalTitle: originalTitle,
             originaLanguage: getLanguage(currentData.original_language),
@@ -111,6 +113,18 @@ function getResults(template, list , data, type){
         append(template,value,list);
     }
 };
+
+// G E T  I M G //
+function getImg(string){
+    var ppUrl ="";
+    if(string== null){
+        ppUrl = "img/not-found.png"
+    }else{
+        ppUrl = "https://image.tmdb.org/t/p/w342/" + string;
+    }
+    return ppUrl;
+}
+
  
 // G E T  V O T E //
 function getvote(number){
