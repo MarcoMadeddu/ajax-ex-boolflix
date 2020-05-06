@@ -6,7 +6,7 @@ $(document).ready(function () {
     var list = $(".film-list"); 
     var source = $("#film-template").html();
     var template = Handlebars.compile(source);
-    input.focus();
+   
 
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){
