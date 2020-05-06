@@ -6,7 +6,7 @@ $(document).ready(function () {
     var list = $(".film-list"); 
     var source = $("#film-template").html();
     var template = Handlebars.compile(source);
-   
+    var film = $(".movie");
 
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){
@@ -21,6 +21,11 @@ $(document).ready(function () {
             run(param);
         }
     });
+
+    film.hover(function(){
+        $(this).find("ul").hide();
+        console.log("ei");
+    })
 // E N D  D O C U M E N T  R E A D Y //
 });
 
