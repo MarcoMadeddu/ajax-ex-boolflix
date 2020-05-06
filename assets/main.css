@@ -11,6 +11,7 @@ body{
 .app{
     display: flex;
     flex-direction: column;
+    height: 100vh;
     background-image: linear-gradient(90deg, rgb(23, 21, 21) 0%, rgb(22, 17, 17) 43%, rgb(245, 31, 0) 100%);
 }
 
@@ -52,7 +53,7 @@ body{
     transition: transform 0.4s , border 0.4s;
 }
 
-.control #search{
+.control i{
     font-size: 20px;
     color: black;
     transition: transform 0.4s , color 0.4s; 
@@ -82,7 +83,7 @@ body{
 
 .film-list{
     display: flex;
-    height: 80vh;
+    flex-grow: 1;
 }
 
 .movie{
@@ -90,30 +91,35 @@ body{
     margin-left:20px;
     position: relative;
     object-fit: cover;
+   
+    transition: filter 0.9s , transform 0.9s;
 }
 
-.poster{
-    font-size:0px;
-    line-height: 0px;
+.movie:hover{
+    /* filter: blur(2px); */
+    transform: scale(1.1);
 }
-.poster img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+
+.movie img{
+    transition: opacity 0.5s;
 }
 
 .movie ul{
     list-style: none;
     position: absolute;
-    top: 30%;
+    top: 45%;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    height: 50%;
     align-items: center;
-    display: none;
+    /* display: none; */
+    background-color: rgba(255, 0, 0, 0.8);
+    transition: background 0.9s;
 }
 
-.show{
-    display: flex;
+
+
+.movie .title{
+    font-size: 20px;
+    color: white;
 }
+

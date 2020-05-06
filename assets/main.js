@@ -22,8 +22,10 @@ $(document).ready(function () {
         }
     });
 
+    // H O V E R  F O R  I N F O //
     $('body').on('mouseenter', '.movie', function() {
        $(this).children("ul").fadeIn();
+       
     });
 
     $('body').on('mouseleave', '.movie', function() {
