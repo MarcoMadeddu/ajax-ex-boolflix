@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="assets/main.css">
     <!-- ** F O N T A W E S O M E ** -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -25,44 +27,7 @@
 
     <main class="main">
        <div class="film-list">
-        <div class="movie">
-            <div class="Poster">
-                <img src="https://image.tmdb.org/t/p/w342//3x5uJ9E93yUWHbGKC62pR4Y0VQP.jpg" alt="Poster">
-            </div>
-            <ul>
-                <li>
-                    
-                    <span class="title">Ecco noi per esempio...</span>
-                </li>
-
-                
-                <li>
-                    <span>Titolo originale:</span>
-                    <span>Ecco noi per esempio...</span>
-                </li>
-            
-
-                <li>
-                    <span>Lingua:</span>
-                    <span><img class="flag" src="img/it.svg" alt="it"></span>
-                </li>
-
-                <li>
-                    <span>Voti:</span>
-                    <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                </li>
-
-                <li>
-                    <span>Trama:</span>
-                    <span>Un fotografo squinternato incontra un poeta contadino, lo deruba, ma poi diventa suo amico. Imbozzolati in 2 figure lise dall'uso, Pozzetto e Celentano non riescono a riempire i vuoti di una sceneggiatura intessuta di luoghi comuni e condita con salsa qualunquista.</span>
-                </li>
-
-                <li>
-                    <span>Tipo:</span>
-                    <span>Film</span>
-                </li>
-            </ul>
-        </div>
+        
        </div>
     </main>
    </div>
@@ -80,35 +45,34 @@
             <div class="Poster">
                 <img src="{{poster}}" alt="Poster">
             </div>
-            <ul>
-                <li>
+            <ul style="display: none;">
+                <li class="title">
                     
-                    <span class="title">{{title}}</span>
+                    <h2>{{title}}</h2>
                 </li>
-
                 
-                <li>
+                <li  style="display: none;">
                     <span>Titolo originale:</span>
                     <span>{{originalTitle}}</span>
                 </li>
             
 
-                <li>
+                <li  style="display: none;"> 
                     <span>Lingua:</span>
                     <span>{{{originaLanguage}}}</span>
                 </li>
 
-                <li>
+                <li  style="display: none;">
                     <span>Voti:</span>
                     <span>{{{averege}}}</span>
                 </li>
 
-                <li>
+                <li  style="display: none;">
                     <span>Trama:</span>
                     <span>{{overview}}</span>
                 </li>
 
-                <li>
+                <li  style="display: none;">
                     <span>Tipo:</span>
                     <span>{{{type}}}</span>
                 </li>

@@ -31,6 +31,16 @@ $(document).ready(function () {
     $('body').on('mouseleave', '.movie', function() {
         $(this).children("ul").fadeOut();
      });
+
+     $('body').on('mouseenter', 'ul', function() {
+        $(this).children("li").fadeIn();
+     });
+
+     $('body').on('mouseleave', 'ul', function() {
+       
+        $(this).children("li").fadeOut();
+        $(this).children(".title").fadeIn();
+     });
 // E N D  D O C U M E N T  R E A D Y //
 });
 
@@ -168,8 +178,8 @@ function getLanguage(lang) {
 // G E T  O V E R V I E W //
 function getOw(trama){
     var res= "";
-    if(trama.length > 300){
-        res = trama.substr(0, 300);
+    if(trama.length > 100){
+        res = trama.substr(0, 100);
     }else{
         res = trama;
     }
