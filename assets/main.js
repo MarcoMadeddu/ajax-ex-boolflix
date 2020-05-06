@@ -14,8 +14,8 @@ $(document).ready(function () {
     btnSearch.click(function(){
         if(input.val() !== ""){
         resetList(list);  
-        searchFilm(template, input ,list);
-        searchTvSerie(template, input ,list);
+        searchFilm(template, input ,list, "Film");
+        searchTvSerie(template, input ,list, "Serie");
         resetInput(input);
         }else{
             alert("riempi il campo");
@@ -27,8 +27,8 @@ $(document).ready(function () {
         if(e.which==13){
             if(input.val() !== ""){
                 resetList(list);  
-                searchFilm(template, input ,list);
-                searchTvSerie(template, input ,list);
+                searchFilm(template, input ,list , "Film");
+                searchTvSerie(template, input ,list, "Serie");
                 resetInput(input);
                 }else{
                     alert("riempi il campo");
@@ -52,8 +52,8 @@ function resetInput(input){
     input.val("");
 };
 
-// S E A R C H F I L M //
-function searchFilm(template, from , list){
+// S E A R C H  F I L M //
+function searchFilm(template, from , list, type){
     var filmToSearch = from.val().trim();
     $.ajax({
         url: "https://api.themoviedb.org/3/search/movie",
@@ -66,7 +66,7 @@ function searchFilm(template, from , list){
         success: function (data) {
             var films = data.results;
             if(films.length>0){
-               getFilm(template, list , films);
+               getResults(template, list , films, type);
             
             }else{
                 alert("NESSUN FILM");
@@ -78,23 +78,32 @@ function searchFilm(template, from , list){
         }
     });   
 };
-// G E T F I L M //
-function getFilm(template, list , films){
+// G E T  R E S U L T S //
+function getResults(template, list , films, type){
     for(var i = 0; i < films.length; i++){
         var currentFilm = films[i];
+        var title , originalTitle;
+        if (type=="Film"){
+            title= currentFilm.title;
+            originalTitle= currentFilm.original_title;
+        }else if(type=="Serie"){
+            title= currentFilm.name;
+            originalTitle= currentFilm.original_name;
+        }
+
         var value = {
-            title: currentFilm.title,
-            originalTitle: currentFilm.original_title,
+            title: title,
+            originalTitle: originalTitle,
             originaLanguage: getLanguage(currentFilm.original_language),
             averege: getvote(currentFilm.vote_average),
-            type: "Film"
+            type: type
         };
         append(template,value,list);
     }
 };
 
 // S E A R C H  S E R I E //
-function searchTvSerie(template, from , list){
+function searchTvSerie(template, from , list , type){
     var serieToSearch = from.val().trim();
     $.ajax({
         url: "https://api.themoviedb.org/3/search/tv",
@@ -108,7 +117,7 @@ function searchTvSerie(template, from , list){
         success: function (data) {
             var series = data.results;
             if(series.length>0){
-                getSerie(template, list , series);
+                getResults(template, list , series , type);
             }else{
                 console.log("non ci sono serie");
                 from.select();
@@ -121,20 +130,6 @@ function searchTvSerie(template, from , list){
         }
     });
 }   
-// G E T  S E R I E //  
-function getSerie(template, list , series){
-    for(var i = 0; i < series.length; i++){
-        var currentSerie = series[i];
-        var value = {
-            title: currentSerie.name,
-            originalTitle: currentSerie.original_name,
-            originaLanguage: getLanguage(currentSerie.original_language),
-            averege: getvote(currentSerie.vote_average),
-            type: "Serie Tv"
-        };
-        append(template,value,list);    
-    }
-}
 
 // G E T  V O T E //
 function getvote(number){
