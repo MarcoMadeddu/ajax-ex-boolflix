@@ -6,7 +6,12 @@ $(document).ready(function () {
     var list = $(".film-list"); 
     var source = $("#film-template").html();
     var template = Handlebars.compile(source);
-    var param = {list,template,input};
+    var status = $(".status>h2");
+    var param = {list,template,input,status};
+    
+    // D E B U G  F I L M //
+
+
     
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){     
@@ -21,9 +26,14 @@ $(document).ready(function () {
     });
 
     // H O V E R  F O R  I N F O //
+    $('body').on('mouseenter', 'input', function() {
+       $(this).parent().find("i").addClass("control-active");
+       
+        
+     });
+
     $('body').on('mouseenter', '.movie', function() {
        $(this).children("ul").addClass("active");
-       
     });
 
     $('body').on('mouseleave', '.movie', function() {
@@ -32,10 +42,12 @@ $(document).ready(function () {
 
      $('body').on('mouseenter', 'ul', function() {
         $(this).children("li").fadeIn();
+        $(this).addClass("border");
      });
 
+
      $('body').on('mouseleave', 'ul', function() {
-       
+        $(this).removeClass("border");
         $(this).children("li").fadeOut();
         $(this).children(".title").fadeIn();
      });
@@ -53,6 +65,7 @@ function run(param){
         searchData(param.template, param.input , param.list, "Film");
         searchData(param.template, param.input , param.list, "Serie");
         resetInput(param.input);
+        compileStatus(param.status);
     }else{
         alert("riempi il campo");
     }
@@ -190,3 +203,8 @@ function append(template,value,list){
         list.append(set);
 };
 
+// C O M P I L E  S T A T U S //
+function compileStatus(status){
+    status.text("I tuoi risultati:");
+    return status;
+}

@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+/* G E N E R A L */
 body{
     font-family: 'Montserrat', sans-serif;
 }
@@ -11,10 +12,11 @@ body{
 .app{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 110vh;
     background-image: linear-gradient(90deg, rgb(23, 21, 21) 0%, rgb(22, 17, 17) 43%, rgb(245, 31, 0) 100%);
 }
 
+/* H E A D E R  */
 .header{
     display: flex;
     align-items: center;
@@ -69,7 +71,7 @@ body{
     border: 3px solid  white;
 }
 
-
+/* M A I N  */
 .flag{
     max-width: 30px;
 }
@@ -78,16 +80,25 @@ body{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    overflow-x: auto;
 }
 
 .film-list{
-    display: flex;
+    display: flex;  
     flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
-.poster{
-    
+.status{
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.status h2{
+    color: white; 
+    font-weight: 300;
 }
 
 .movie{
@@ -106,6 +117,7 @@ body{
     height: 100%;
 }
 
+/* M O V I E  U L */
 .movie ul{
     display: flex;
     flex-direction: column;
@@ -119,7 +131,17 @@ body{
     border: 1px solid red; 
     color: white;
     opacity: 0;
-    transition: opacity 0.4s ,  border 1s;
+    transition: opacity 0.4s ,  border-radius 1s;
+}
+
+.movie ul li:nth-child(even) h3::after{
+    content: "";
+    border: 1px solid red;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50% , 0%);
 }
 
 .movie ul li:nth-child(2){
@@ -128,14 +150,10 @@ body{
 .movie ul li{
     display: none;
     text-align: center;
+   position: relative;
 }
-
-.movie .active{
-    border-radius: 10px;
-    opacity: 1;
-}
-.movie .ul li h3{
-    font-size: 12x;
+.movie ul>li>h3{
+    font-size: 18px;
 }
 
 .movie .fas{
@@ -151,9 +169,17 @@ body{
     font-weight: 300;
 }
 
-#plus{
-    text-align: center;
+.movie .active{
+    opacity: 1;
 }
+
+.movie .border{
+    border-radius: 10px;
+}
+
+
+
+
 
 
 
