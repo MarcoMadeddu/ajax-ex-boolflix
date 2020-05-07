@@ -22,12 +22,12 @@ $(document).ready(function () {
 
     // H O V E R  F O R  I N F O //
     $('body').on('mouseenter', '.movie', function() {
-       $(this).children("ul").fadeIn();
+       $(this).children("ul").addClass("active");
        
     });
 
     $('body').on('mouseleave', '.movie', function() {
-        $(this).children("ul").fadeOut();
+        $(this).children("ul").removeClass("active");
      });
 
      $('body').on('mouseenter', 'ul', function() {

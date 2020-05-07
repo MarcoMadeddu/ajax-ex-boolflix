@@ -27,7 +27,44 @@
 
     <main class="main">
        <div class="film-list">
-        
+        <div class="movie">
+            <div class="Poster">
+                <img src="https://image.tmdb.org/t/p/w342//u1RSyTfhoKBMlVqXfoEzGldlDtL.jpg" alt="Poster">
+            </div>
+            <ul class="">
+                <li class="title">
+                    
+                    <h2>La casa di carta</h2>
+                </li>
+                
+                <li>
+                    <h3>Titolo originale:</h3>
+                    <span>La casa de papel</span>
+                </li>
+            
+
+                <li> 
+                    <h3>Lingua:</h3>
+                    <span>es</span>
+                </li>
+
+                <li>
+                    <h3>Voti:</h3>
+                    <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+                </li>
+
+                <li>
+                    
+                    <h3>Trama:</h3>
+                    <span>Otto ladri si barricano nell'edificio della Zecca spagnola con alcuni ostaggi, mentre una mente crim</span>
+                </li>
+
+                <li>
+                    <h3>Tipo:</h3>
+                    <span>Serie</span>
+                </li>
+            </ul>
+        </div>
        </div>
     </main>
    </div>
@@ -45,38 +82,38 @@
             <div class="Poster">
                 <img src="{{poster}}" alt="Poster">
             </div>
-            <ul style="display: none;">
+            <ul>
                 <li class="title">
                     
                     <h2>{{title}}</h2>
                 </li>
                 
-                <li  style="display: none;">
-                    <span>Titolo originale:</span>
+                <li>
+                    <h3>Titolo originale:</h3>
                     <span>{{originalTitle}}</span>
                 </li>
             
 
-                <li  style="display: none;"> 
-                    <span>Lingua:</span>
+                <li> 
+                    <h3>Lingua:</h3>
                     <span>{{{originaLanguage}}}</span>
                 </li>
 
-                <li  style="display: none;">
-                    <span>Voti:</span>
+                <li>
+                    <h3>Voti:</h3>
                     <span>{{{averege}}}</span>
                 </li>
 
-                <li  style="display: none;">
+                <li>
                     
                     {{#if overview}}
-                    <span>Trama:</span>
+                    <h3>Trama:</h3>
                     <span>{{overview}}</span>
                     {{/if}}
                 </li>
 
-                <li  style="display: none;">
-                    <span>Tipo:</span>
+                <li>
+                    <h3>Tipo:</h3>
                     <span>{{{type}}}</span>
                 </li>
             </ul>
