@@ -6,18 +6,16 @@ $(document).ready(function () {
     var list = $(".film-list"); 
     var source = $("#film-template").html();
     var template = Handlebars.compile(source);
-    var movie= $(".movie");
-
+    var param = {list,template,input};
+    
     // S E A R C H  B Y  C L I C K //
-    btnSearch.click(function(){
-        var param = {list,template,input};
+    btnSearch.click(function(){     
         run(param);
     });
 
      // S E A R C H  B Y  E N T E R  //
-    input.keyup(function(e){
+    input.keypress(function(e){
         if(e.which==13){
-            var param = {list,template,input};
             run(param);
         }
     });
