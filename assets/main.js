@@ -205,6 +205,6 @@ function append(template,value,list){
 
 // C O M P I L E  S T A T U S //
 function compileStatus(status){
-    status.text("I tuoi risultati:");
+    status.text("I tuoi risultati");
     return status;
 }
