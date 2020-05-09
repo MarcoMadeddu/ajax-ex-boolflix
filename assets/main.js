@@ -7,11 +7,12 @@ $(document).ready(function () {
     var source = $("#film-template").html();
     var template = Handlebars.compile(source);
     var status = $(".status>h2");
+    var topFilm = ["Tyler rake", "il buco" , "shutter island" , "american sniper", "prova a prendermi" ,  "inception" , "avengers endgame" , "predestination" , "el camino" , "focus"];
     var param = {list,template,input,status};
     
     // D E B U G  F I L M //
-
-
+    runDebug(topFilm , template , list);
+    
     
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){     
@@ -58,6 +59,52 @@ $(document).ready(function () {
 
 // **F U N C T I O N S** //
 
+// R U N  D E B U G //
+function runDebug(string , template, list){
+    
+    var url;
+    type= "Film";
+    if(type == "Film"){
+        url = "https://api.themoviedb.org/3/search/movie";
+    }else if( type == "Serie"){
+        url = "https://api.themoviedb.org/3/search/tv";
+    }
+
+    for(var y = 0; y< 10; y++)
+    {
+        $.ajax({
+            url: url,
+            method: "GET",
+            data: {
+                api_key: "d095562fc608329d4fa8c044d034e379",
+                query: string[y],
+                language: "it-IT",
+            },
+            success: function (data) {
+                var filmTop =selectTop(data);
+                getResults(template, list , filmTop, type);
+            },
+            error: function() {
+                console.log("Errore chiamata API");
+            }
+        }); 
+    } 
+};
+
+// S E L E C T  T O P //
+function selectTop(data){
+    var films = data.results;
+    var us =[];
+    for(var i =  0; i< films.length; i++){
+        var thisData = films[i];
+        if(thisData.poster_path !== null && thisData.vote_count > 500){
+        us.push(thisData);
+        console.log(us.length); 
+        }
+    };
+    return us;
+}
+
 // R U N //
 function run(param){
     if(param.input.val() !== ""){
@@ -82,8 +129,7 @@ function resetInput(input){
 };
 
 // S E A R C H  D A T A //
-function searchData(template, from , list, type){
-
+function searchData(template, from , list, type){ 
     var filmToSearch = from.val().trim();
     var url;
 
