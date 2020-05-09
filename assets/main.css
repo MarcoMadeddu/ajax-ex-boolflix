@@ -12,7 +12,7 @@ body{
 .app{
     display: flex;
     flex-direction: column;
-    height: 1000px;
+    height: 100%;
     background-image: linear-gradient(90deg, rgb(23, 21, 21) 0%, rgb(22, 17, 17) 43%, rgb(245, 31, 0) 100%);
 }
 
@@ -82,11 +82,14 @@ body{
     flex-grow: 1;
 }
 
-.film-list{
-    display: flex; 
-    flex-grow: 1;
+.film-list,
+.film-debug{
+    display: flex;
+    align-items: center;
+    height: 600px;
     overflow-x: auto;
-    overflow-y: auto;
+    overflow-y: unset;
+    margin-bottom: 20px;
 }
 
 .status{
@@ -105,9 +108,10 @@ body{
     position: relative;
     height: 500px;
     width: 340px;
+    overflow-y: unset;
     object-fit: cover;
-    margin-right: 20px;
-    margin-left:20px;
+    margin-right: 30px;
+    margin-left:30px;
     transition: transform 0.9s;
 }
 

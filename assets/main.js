@@ -4,15 +4,17 @@ $(document).ready(function () {
     var input = $("#input");
     var btnSearch =$ ("#search");
     var list = $(".film-list"); 
+    var serieList = $(".film-debug"); 
     var source = $("#film-template").html();
     var template = Handlebars.compile(source);
     var status = $(".status>h2");
-    var topFilm = ["Tyler rake", "il buco" , "shutter island" , "american sniper", "prova a prendermi" ,  "inception" , "avengers endgame" , "predestination" , "el camino" , "focus"];
+    var topFilm = ["Tyler rake", "il buco" , "shutter island" , "american sniper", "prova a prendermi" ,  "inception" , "avengers endgame" , "once upon a time in hollywood" , "el camino" , "focus"];
+    var topSerie = ["the witcher"  , "chernobyl" , "prison break", "Black mirror" , "Game of thrones" , "breaking  bad" , "Elitè" , "la casa di carta", "Vis a vis" , "stranger things"];
     var param = {list,template,input,status};
     
     // D E B U G  F I L M //
-    runDebug(topFilm , template , list);
-    
+    runDebug(topFilm , template , list, "Film");
+    runDebug(topSerie , template , serieList, "Serie");
     
     // S E A R C H  B Y  C L I C K //
     btnSearch.click(function(){     
@@ -60,10 +62,9 @@ $(document).ready(function () {
 // **F U N C T I O N S** //
 
 // R U N  D E B U G //
-function runDebug(string , template, list){
+function runDebug(string , template, list,type){
     
     var url;
-    type= "Film";
     if(type == "Film"){
         url = "https://api.themoviedb.org/3/search/movie";
     }else if( type == "Serie"){
@@ -99,7 +100,6 @@ function selectTop(data){
         var thisData = films[i];
         if(thisData.poster_path !== null && thisData.vote_count > 500){
         us.push(thisData);
-        console.log(us.length); 
         }
     };
     return us;
