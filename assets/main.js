@@ -10,7 +10,7 @@ $(document).ready(function () {
     var status = $(".status>h2");
     var topFilm = ["Tyler rake", "il buco" , "shutter island" , "american sniper", "prova a prendermi" ,  "inception" , "avengers endgame" , "once upon a time in hollywood" , "el camino" , "focus"];
     var topSerie = ["the witcher"  , "chernobyl" , "prison break", "Black mirror" , "Game of thrones" , "breaking  bad" , "Elitè" , "la casa di carta", "Vis a vis" , "stranger things"];
-    var param = {list,template,input,status};
+    var param = {list, serieList, template,input,status};
     
     // D E B U G  F I L M //
     runDebug(topFilm , template , list, "Film");
@@ -108,7 +108,7 @@ function selectTop(data){
 // R U N //
 function run(param){
     if(param.input.val() !== ""){
-        resetList(param.list);  
+        resetList(param.list, param.serieList);  
         searchData(param.template, param.input , param.list, "Film");
         searchData(param.template, param.input , param.list, "Serie");
         resetInput(param.input);
@@ -119,8 +119,10 @@ function run(param){
 }
 
 // R E S E T  L I S T//
-function resetList(list){
-    list.children().remove();
+function resetList(list1 , list2){
+    list1.children().remove();
+    list2.parent().find(".status2").remove();
+    list2.hide();
 };
 
 // R E S E T  I N P U T //

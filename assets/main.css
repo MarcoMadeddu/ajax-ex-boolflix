@@ -13,7 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-image: linear-gradient(90deg, rgb(23, 21, 21) 0%, rgb(22, 17, 17) 43%, rgb(245, 31, 0) 100%);
+    background-image: linear-gradient(327deg, rgb(22, 17, 17) 31%, rgb(255, 0, 0) 50%, rgb(22, 17, 17) 69%);
 }
 
 /* H E A D E R  */
@@ -46,29 +46,31 @@ body{
     margin-right: 20px;
     padding: 10px;
     width: 250px;
-    border: 3px solid black;
+    border: 3px solid white;
     border-radius: 10px;
+    opacity: 0.6;
     outline: none;
     background: none;
     color: white;
     font-size: 15px;
-    transition: transform 0.4s , border 0.4s;
+    transition: transform 0.4s , opacity 0.4s;
 }
 
 .control i{
     font-size: 20px;
-    color: black;
-    transition: transform 0.4s , color 0.4s; 
+    opacity: 0.6;
+    color: white;
+    transition: transform 0.4s , opacity 0.4s; 
 }
 
 #search:hover{
     transform: scale(1.5);
-    color: white;
+    opacity: 1;
 }
 #input:hover,
 #input:focus{
     transform: scale(1.1);
-    border: 3px solid  white;
+    opacity: 1;
 }
 
 /* M A I N  */
@@ -92,14 +94,20 @@ body{
     margin-bottom: 20px;
 }
 
-.status{
+.film-debug{
+    
+}
+
+.status,
+.status2{
     width: 100%;
     text-align: center;
     font-size: 25px;
     margin-bottom: 20px;
 }
 
-.status h2{
+.status h2,
+.status2 h2{
     color: white; 
     font-weight: 300;
 }
@@ -110,8 +118,8 @@ body{
     width: 340px;
     overflow-y: unset;
     object-fit: cover;
-    margin-right: 30px;
-    margin-left:30px;
+    margin-right: 20px;
+    margin-left:20px;
     transition: transform 0.9s;
 }
 
