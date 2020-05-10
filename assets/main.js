@@ -111,7 +111,7 @@ function run(param){
         resetList(param.list, param.serieList);  
         searchData(param.template, param.input , param.list, "Film");
         searchData(param.template, param.input , param.list, "Serie");
-        resetInput(param.input);
+        resetInput(param.input ,param.list);
         compileStatus(param.status);
     }else{
         alert("riempi il campo");
@@ -126,7 +126,7 @@ function resetList(list1 , list2){
 };
 
 // R E S E T  I N P U T //
-function resetInput(input){
+function resetInput(input,list1){
     input.val("");
 };
 
@@ -164,12 +164,12 @@ function searchData(template, from , list, type){
         }
     });   
 };
+
 // G E T  R E S U L T S //
 function getResults(template, list , data, type){
     for(var i = 0; i < data.length; i++){
         var currentData = data[i];
-        var title , originalTitle;
-
+        var title , originalTitle,rank;
         if (type=="Film"){
             title= currentData.title;
             originalTitle= currentData.original_title;
